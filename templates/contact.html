@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact - Book Recommender</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        * { font-family: 'Montserrat', sans-serif; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #000000, #111111, #ffffff);
+            background-attachment: fixed;
+            color: white;
+            padding-top: 90px;
+            overflow-x: hidden;
+        }
+
+        /* Animated Glow Background */
+        body::before {
+            content: "";
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,0,0,0.4), transparent 70%);
+            top: -200px;
+            left: -200px;
+            animation: moveGlow 8s infinite alternate ease-in-out;
+            z-index: -1;
+        }
+
+        @keyframes moveGlow {
+            from { transform: translate(0,0); }
+            to { transform: translate(300px,200px); }
+        }
+
+        /* NAVBAR */
+        .custom-navbar {
+            background: linear-gradient(90deg, rgba(0,0,0,0.9), rgba(139,0,0,0.8), rgba(255,255,255,0.2));
+            backdrop-filter: blur(25px);
+            padding: 12px 30px;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 22px;
+            color: white !important;
+        }
+
+        @media(max-width:576px){
+            .navbar-brand { font-size:17px; }
+        }
+
+        .nav-link {
+            color: white !important;
+            font-weight: 600;
+            margin-left: 15px;
+        }
+
+        .nav-link:hover { color:#ff3c3c !important; }
+
+        .navbar-toggler { border:none; }
+        .navbar-toggler-icon { filter:invert(1); }
+
+        /* CONTACT BOX */
+        .contact-box {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(30px);
+            border-radius: 25px;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity:0; transform: translateY(40px); }
+            to { opacity:1; transform: translateY(0); }
+        }
+
+        .form-control {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+        }
+
+        .form-control::placeholder { color:#ccc; }
+
+        .btn-custom {
+            background: linear-gradient(45deg,#8b0000,#ff0000);
+            border:none;
+            color:white;
+            font-weight:600;
+            transition:0.3s;
+        }
+
+        .btn-custom:hover {
+            transform: scale(1.05);
+            box-shadow:0 0 20px red;
+        }
+
+        .success-box {
+            margin-top:20px;
+            padding:15px;
+            border-radius:15px;
+            background:rgba(0,255,0,0.15);
+            border:1px solid rgba(0,255,0,0.4);
+            animation: fadeIn 0.6s ease;
+        }
+
+        /* TRUST SECTION */
+        .trust-section {
+            margin-top:80px;
+        }
+
+        .trust-card {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(20px);
+            border-radius:20px;
+            padding:30px;
+            border:1px solid rgba(255,255,255,0.2);
+            transition:0.4s;
+            height:100%;
+        }
+
+        .trust-card:hover {
+            transform: translateY(-8px);
+            box-shadow:0 20px 40px rgba(255,0,0,0.4);
+        }
+
+        .trust-icon {
+            font-size:35px;
+            margin-bottom:15px;
+        }
+
+        /* FOOTER */
+        footer {
+            margin-top:80px;
+            background: linear-gradient(90deg,#000000,#8b0000,#ffffff);
+            padding:50px 0;
+            position:relative;
+            overflow:hidden;
+        }
+
+        footer::before {
+            content:"";
+            position:absolute;
+            width:200%;
+            height:100%;
+            background: linear-gradient(120deg,transparent,rgba(255,255,255,0.2),transparent);
+            animation: shine 6s infinite;
+        }
+
+        @keyframes shine {
+            from { transform:translateX(-100%); }
+            to { transform:translateX(100%); }
+        }
+
+        .footer-bottom {
+            text-align:center;
+            margin-top:20px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg custom-navbar fixed-top">
+        <div class="container-fluid">
+
+            <a class="navbar-brand" href="/">📚 ReadSmart</a>
+
+            <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+                <ul class="navbar-nav text-center">
+                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/recommend">Recommend</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- CONTACT FORM -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="contact-box">
+                    <h2 class="text-center mb-4">📬 Contact Us</h2>
+
+                    <p class="text-center mb-4">
+                        We value your feedback and suggestions. Our team typically responds within 24 hours.
+                    </p>
+
+                    <form action="/send_message" method="post">
+                        <div class="mb-3">
+                            <input type="text" name="name" class="form-control" placeholder="Your Name">
+                        </div>
+
+                        <div class="mb-3">
+                            <input type="email" name="email" class="form-control" placeholder="Your Email">
+                        </div>
+
+                        <div class="mb-3">
+                            <textarea name="message" rows="5" class="form-control"
+                                placeholder="Your Message"></textarea>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-custom">Send Message</button>
+                        </div>
+                    </form>
+
+                    {% if success %}
+                    <div class="success-box text-center">
+                        <strong>{{ success }}</strong>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- TRUST SECTION -->
+        <div class="trust-section">
+            <div class="row text-center">
+                <div class="col-md-4 mb-4">
+                    <div class="trust-card">
+                        <div class="trust-icon">🔒</div>
+                        <h5>Secure & Private</h5>
+                        <p>Your data is never shared. We respect your privacy.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="trust-card">
+                        <div class="trust-icon">⚡</div>
+                        <h5>Fast Response</h5>
+                        <p>Our team responds within 24 hours.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="trust-card">
+                        <div class="trust-icon">🤝</div>
+                        <h5>User Focused</h5>
+                        <p>We continuously improve based on your feedback.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container text-white">
+            <div class="footer-bottom">
+                © 2026 Book Recommender System | Designed with ❤️ by team ReadSmart | Secure & Trusted Platform
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

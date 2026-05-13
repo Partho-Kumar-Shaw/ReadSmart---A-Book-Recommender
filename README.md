@@ -1,4 +1,4 @@
-# 📚 Book Recommender System
+# 📚 ***READSMART*** - A Book Recommender System
 
 A machine learning-powered **Book Recommendation Web Application** built with **Flask**, **NumPy**, and **Pickle-based collaborative filtering models**.
 

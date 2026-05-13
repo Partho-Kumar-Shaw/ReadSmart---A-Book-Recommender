@@ -1,1 +1,2 @@
-messages.txt
+messages.txt 
+# or we can write *.txt if we dont want any text to be pushed.

@@ -1,4 +1,11 @@
+# Flask web framework
 Flask
+
+# Numerical computing
 numpy
+
+# Data manipulation
 pandas
+
+# Machine learning utilities
 scikit-learn

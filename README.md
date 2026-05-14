@@ -297,18 +297,6 @@ Markdown usage:
 
 ---
 
-# 📦 requirements.txt Example
-
-If not already created:
-
-```txt
-Flask
-numpy
-pandas
-scikit-learn
-```
-
----
 
 # 🚀 Future Improvements
 

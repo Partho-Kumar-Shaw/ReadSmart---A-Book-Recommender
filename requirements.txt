@@ -9,3 +9,6 @@ pandas
 
 # Machine learning utilities
 scikit-learn
+
+#Install dependencies:
+## pip install -r requirements.txt

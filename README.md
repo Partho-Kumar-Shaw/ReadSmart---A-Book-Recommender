@@ -392,7 +392,7 @@ MIT License
 
 # 👨‍💻 Author
 
-Developed by **Your Name**
+Developed by **Partho Kumar Shaw**
 
 GitHub: https://github.com/your-username
 

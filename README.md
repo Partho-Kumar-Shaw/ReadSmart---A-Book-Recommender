@@ -394,7 +394,7 @@ MIT License
 
 Developed by **Partho Kumar Shaw**
 
-GitHub: https://github.com/your-username
+GitHub: https://github.com/Partho-Kumar-Shaw
 
 ---
 
@@ -421,4 +421,4 @@ https://your-live-demo-link.com
 
 ---
 
-**READSMART — Helping readers discover their next favorite book 📚**
+**READSMART — Helping readers discover their next favorite book. 📚**

@@ -2,7 +2,7 @@
 
 A machine learning-powered **Book Recommendation Web Application** built using **Flask**, **NumPy**, and **Pickle-based Collaborative Filtering Models**.
 
-READSMART helps users discover books through popularity rankings and personalized recommendations using similarity-based machine learning.
+*READSMART* helps users discover books through popularity rankings and personalized recommendations using similarity-based machine learning.
 
 ---
 

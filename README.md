@@ -19,7 +19,7 @@ Displays trending/popular books with:
 
 ---
 
-### 🤖 Personalized Book Recommendations
+### 🤖 Personalized Book Recommendations-
 Users can search for a book and receive ***Top 5 similar book recommendations***.
 
 Recommendation logic includes:

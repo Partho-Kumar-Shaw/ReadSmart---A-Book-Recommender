@@ -6,7 +6,7 @@ A machine learning-powered **Book Recommendation Web Application** built using *
 
 ---
 
-## ✨ Features 
+## ✨ Features
 
 ### 📖 Popular Books Homepage
 Displays trending/popular books with:

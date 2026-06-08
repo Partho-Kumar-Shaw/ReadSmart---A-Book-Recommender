@@ -421,4 +421,4 @@ https://your-live-demo-link.com
 
 ---
 
-**READSMART — Helping readers discover their next favorite book.... 📚**
+**READSMART — Helping readers discover their next favorite book....📚**

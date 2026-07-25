@@ -411,13 +411,7 @@ If you found this project useful:
 
 ## Demo Preview
 
-(Optional) - I will Upload This Soon....
-
-Add deployed project link here:
-
-```bash
-https://your-live-demo-link.com
-```
+ I will Upload This Soon....
 
 ---
 

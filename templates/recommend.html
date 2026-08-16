@@ -3,395 +3,218 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>📚 ReadSmart</title>
+    <title>AI Book Recommendations - ReadSmart</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <style>
-        * {
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        body {
-            margin: 0;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            background: linear-gradient(135deg, #000000, #111111, #ffffff);
-            background-attachment: fixed;
-            color: white;
-            overflow-x: hidden;
-            padding-top: 90px;
-        }
-
-        /* Animated Glow */
-        body::before {
-            content: "";
-            position: fixed;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(255, 0, 0, 0.4), transparent 70%);
-            top: -200px;
-            left: -200px;
-            animation: moveGlow 8s infinite alternate ease-in-out;
-            z-index: -1;
-        }
-
-        @keyframes moveGlow {
-            from {
-                transform: translate(0, 0);
-            }
-
-            to {
-                transform: translate(300px, 200px);
-            }
-        }
-
-        /* NAVBAR */
-        .custom-navbar {
-            background: linear-gradient(90deg, rgba(0, 0, 0, 0.9), rgba(139, 0, 0, 0.8), rgba(255, 255, 255, 0.2));
-            backdrop-filter: blur(25px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 12px 30px;
-        }
-
-        .navbar-brand {
-            font-weight: 800;
-            font-size: 22px;
-            color: white !important;
-        }
-
-        @media (max-width: 576px) {
-            .navbar-brand {
-                font-size: 17px;
-            }
-        }
-
-        .nav-link {
-            color: #ffffff !important;
-            font-weight: 600;
-            margin-left: 15px;
-            transition: 0.3s;
-        }
-
-        .nav-link:hover {
-            color: #ff3c3c !important;
-        }
-
-        .navbar-toggler {
-            border: none;
-        }
-
-        .navbar-toggler-icon {
-            filter: invert(1);
-        }
-
-        /* ERROR */
-        .error-box {
-            background: rgba(255, 0, 0, 0.15);
-            backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 0, 0, 0.4);
-            border-radius: 20px;
-            padding: 25px;
-            margin-bottom: 40px;
-            animation: shakeFade 0.6s ease;
-            box-shadow: 0 0 25px rgba(255, 0, 0, 0.4);
-        }
-
-        .error-box h4 {
-            color: #ff4d4d;
-            font-weight: 700;
-        }
-
-        @keyframes shakeFade {
-            0% {
-                transform: translateX(-10px);
-                opacity: 0;
-            }
-
-            25% {
-                transform: translateX(10px);
-            }
-
-            50% {
-                transform: translateX(-5px);
-            }
-
-            75% {
-                transform: translateX(5px);
-            }
-
-            100% {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        /* HEADING */
-        .main-heading {
-            font-size: 48px;
-            font-weight: 900;
-            text-align: center;
-            margin: 40px 0;
-            text-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
-        }
-
-        @media (max-width: 576px) {
-            .main-heading {
-                font-size: 30px;
-            }
-        }
-
-        /* SEARCH BOX */
-        .search-box {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(25px);
-            border-radius: 20px;
-            padding: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            margin-bottom: 50px;
-        }
-
-        .form-control {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: white;
-        }
-
-        .form-control::placeholder {
-            color: #ddd;
-        }
-
-        .btn-custom {
-            background: linear-gradient(45deg, #8b0000, #ff0000);
-            border: none;
-            color: white;
-            font-weight: 600;
-            transition: 0.3s;
-        }
-
-        .btn-custom:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px red;
-        }
-
-        /* Suggestion Styling */
-        #suggestions a {
-            background: rgba(255, 255, 255, 0.08);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(20px);
-        }
-
-        #suggestions a:hover {
-            background: rgba(255, 0, 0, 0.3);
-        }
-
-        /* CARDS */
-        .card {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(30px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 20px;
-            height: 100%;
-            transition: all 0.4s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-8px) scale(1.03);
-            box-shadow: 0 20px 40px rgba(255, 0, 0, 0.4);
-        }
-
-        .card img {
-            height: 240px;
-            object-fit: cover;
-            border-radius: 12px;
-            margin-bottom: 10px;
-        }
-
-        .card h5 {
-            font-weight: 700;
-        }
-
-        .card p {
-            color: #f1f1f1;
-        }
-
-        /* FOOTER */
-        footer {
-            margin-top: 80px;
-            background: linear-gradient(90deg, #000000, #8b0000, #ffffff);
-            padding: 50px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        footer::before {
-            content: "";
-            position: absolute;
-            width: 200%;
-            height: 100%;
-            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            animation: shine 6s infinite;
-        }
-
-        @keyframes shine {
-            from {
-                transform: translateX(-100%);
-            }
-
-            to {
-                transform: translateX(100%);
-            }
-        }
-
-        .footer-bottom {
-            margin-top: 30px;
-            text-align: center;
-        }
-        .myInput::placeholder{
-            color: white;
-        }
-        .myInput:focus::placeholder{
-            color: black;
-            opacity: 0.7;
-        }
-        
-    </style>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
 
-    <!-- NAVBAR  -->
+    <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg custom-navbar fixed-top">
         <div class="container-fluid">
-
             <a class="navbar-brand" href="/">📚 ReadSmart</a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
-                aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
-                <ul class="navbar-nav text-center">
+                <ul class="navbar-nav text-center align-items-center">
                     <li class="nav-item">
                         <a class="nav-link" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/recommend">Recommend</a>
+                        <a class="nav-link" href="/topbooks">Top Books</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/recommend">Recommend AI</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/contact">Contact</a>
                     </li>
+                    <li class="nav-item ms-lg-2">
+                        <button class="btn btn-sm btn-outline-danger text-white rounded-pill px-3 py-2 fw-bold" onclick="openFavoritesModal()">
+                            ❤️ Reading List <span id="navFavCount" class="fav-badge">0</span>
+                        </button>
+                    </li>
                 </ul>
             </div>
-
         </div>
     </nav>
-    <main class="flex-fill">
-        <!-- CONTENT -->
-        <div class="container">
 
-            <h1 class="main-heading">✨ Recommend Books</h1>
+    <main class="container my-5">
+        <div class="text-center mb-5">
+            <h1 class="hero-title" style="font-size: 42px;">✨ AI Recommendation Engine</h1>
+            <p class="hero-subtitle">
+                Enter any book title you love, and our machine learning model will calculate vector similarity scores to return 6 perfect matches!
+            </p>
+        </div>
 
-            <div class="search-box text-center">
-                <form action="/recommend_books" method="post">
-                    <div class="row justify-content-center">
-                        <div class="col-md-6 mb-3">
-                            <input type="text" name="user_input" id="searchBox" class="form-control myInput form-control-lg"
-                                placeholder="Enter a book name..." spellcheck="true" autofocus>
-                            <div id="suggestions" class="list-group mt-2"></div>
+        <!-- SEARCH BOX CONTAINER -->
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="p-4 p-md-5 rounded-4 shadow-lg mb-5" style="background: rgba(255,255,255,0.05); backdrop-filter: blur(25px); border: 1px solid rgba(255,255,255,0.15);">
+                    <form action="/recommend_books" method="post" id="recommendForm">
+                        <div class="row g-3 justify-content-center align-items-center">
+                            <div class="col-md-9 position-relative">
+                                <label for="searchBox" class="form-label text-white fw-bold mb-2">Book Name:</label>
+                                <input type="text" name="user_input" id="searchBox" class="form-control form-control-lg text-white bg-dark border-secondary rounded-3"
+                                    placeholder="Type e.g., 'The Da Vinci Code' or 'Harry Potter'..." value="{{ user_input or '' }}" spellcheck="true" autocomplete="off" autofocus required>
+                                
+                                <div id="suggestions" class="list-group position-absolute w-100 shadow-lg" style="z-index: 1000; top: 100%; left: 0;"></div>
+                            </div>
+                            <div class="col-md-3 mt-md-4">
+                                <button type="submit" class="btn btn-danger btn-lg w-100 fw-bold rounded-3 py-3 shadow">
+                                    ✨ Recommend
+                                </button>
+                            </div>
                         </div>
-                        <div class="col-md-2">
-                            <input type="submit" class="btn btn-custom btn-lg w-100" value="Recommend">
-                        </div>
-                    </div>
-                </form>
-            </div>
+                    </form>
 
-            {% if error %}
-            <div class="row justify-content-center">
-                <div class="col-md-6">
-                    <div class="error-box text-center">
-                        <h4>⚠ {{ error }}</h4>
+                    <!-- QUICK TRENDING SUGGESTION TAGS -->
+                    <div class="mt-4 pt-3 border-top border-secondary border-opacity-25">
+                        <div class="text-white-50 small mb-2 font-monospace">💡 Try Searching Viral Favorites:</div>
+                        <div class="d-flex flex-wrap gap-2">
+                            <button type="button" class="btn btn-sm btn-outline-light rounded-pill px-3" onclick="fillSearch('The Da Vinci Code')">The Da Vinci Code</button>
+                            <button type="button" class="btn btn-sm btn-outline-light rounded-pill px-3" onclick="fillSearch('Harry Potter and the Chamber of Secrets')">Harry Potter</button>
+                            <button type="button" class="btn btn-sm btn-outline-light rounded-pill px-3" onclick="fillSearch('1984')">1984</button>
+                            <button type="button" class="btn btn-sm btn-outline-light rounded-pill px-3" onclick="fillSearch('To Kill a Mockingbird')">To Kill a Mockingbird</button>
+                            <button type="button" class="btn btn-sm btn-outline-light rounded-pill px-3" onclick="fillSearch('The Catcher in the Rye')">The Catcher in the Rye</button>
+                            <button type="button" class="btn btn-sm btn-outline-light rounded-pill px-3" onclick="fillSearch('The Hobbit')">The Hobbit</button>
+                        </div>
                     </div>
                 </div>
             </div>
-            {% endif %}
+        </div>
 
-            {% if data %}
-            <div class="row">
-                {% for i in data %}
-                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                    <div class="card text-center">
-                        <img src="{{ i[2] }}" class="img-fluid" alt="Book">
-                        <h5 class="text-white">{{ i[0] }}</h5>
-                        <p>✍️ {{ i[1] }}</p>
+        <!-- ERROR BOX -->
+        {% if error %}
+        <div class="row justify-content-center my-4">
+            <div class="col-md-7">
+                <div class="p-4 text-center rounded-4 shadow-lg" style="background: rgba(255, 60, 87, 0.15); border: 1px solid var(--accent-red); backdrop-filter: blur(20px);">
+                    <h4 class="text-danger fw-bold mb-2">⚠ Book Not Found</h4>
+                    <p class="text-white-50 mb-0">{{ error }}</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- RECOMMENDATION RESULTS GRID -->
+        {% if data %}
+        <div class="my-5">
+            <div class="text-center mb-4">
+                <h3 class="fw-bold text-white">🎯 Top Similar Recommendations for <span class="text-danger">"{{ user_input }}"</span></h3>
+            </div>
+
+            <div class="row g-4">
+                {% for item in data %}
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="book-card">
+                        <div class="card-img-wrapper">
+                            <img src="{{ item.image if item.image else item[2] }}" alt="{{ item.title if item.title else item[0] }}" onerror="this.src='https://via.placeholder.com/200x280?text=Cover'">
+                            <span class="card-badge">⚡ Match {{ item.similarity if item.similarity else '95%' }}</span>
+                            <button class="card-bookmark-btn" onclick="toggleBookmark('{{ (item.title if item.title else item[0])|e }}', '{{ (item.author if item.author else item[1])|e }}', '{{ (item.image if item.image else item[2])|e }}')">
+                                🤍
+                            </button>
+                        </div>
+                        <div class="card-content">
+                            <div class="book-title">{{ item.title if item.title else item[0] }}</div>
+                            <div class="book-author">✍️ {{ item.author if item.author else item[1] }}</div>
+                            <div class="book-stats">
+                                <span class="rating-badge">⭐ Recommended Match</span>
+                            </div>
+                            <button class="quick-view-btn" onclick='openBookModal({title: "{{ (item.title if item.title else item[0])|e }}", author: "{{ (item.author if item.author else item[1])|e }}", image: "{{ (item.image if item.image else item[2])|e }}", tag: "⚡ AI Match", rating: "4.9", votes: "500+"})'>
+                                🔍 View Book Details
+                            </button>
+                        </div>
                     </div>
                 </div>
                 {% endfor %}
             </div>
-            {% endif %}
-
         </div>
-    </main>
+        {% endif %}
 
+    </main>
 
     <!-- FOOTER -->
     <footer>
         <div class="container text-white">
             <div class="footer-bottom">
-                © 2026 Book Recommender System | Designed with ❤️ By Team ReadSmart.
+                © 2026 ReadSmart Recommender Engine | Designed with ❤️ by Team ReadSmart.
             </div>
         </div>
     </footer>
 
-   
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Suggestion Script (unchanged functionality, just safer) -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
+    <!-- Custom Main JS -->
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
 
+    <!-- AUTOCOMPLETE SUGGESTION SCRIPT -->
+    <script>
+        function fillSearch(title) {
+            const input = document.getElementById("searchBox");
+            input.value = title;
+            document.getElementById("suggestions").innerHTML = "";
+            document.getElementById("recommendForm").submit();
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
             const searchBox = document.getElementById("searchBox");
             const suggestionsBox = document.getElementById("suggestions");
 
-            searchBox.addEventListener("keyup", function () {
-                let query = searchBox.value;
+            let debounceTimer;
+
+            searchBox.addEventListener("input", function () {
+                clearTimeout(debounceTimer);
+                let query = searchBox.value.trim();
 
                 if (query.length > 1) {
-                    fetch("/suggest?q=" + encodeURIComponent(query))
-                        .then(response => response.json())
-                        .then(data => {
-                            suggestionsBox.innerHTML = "";
-                            data.forEach(item => {
-                                let option = document.createElement("a");
-                                option.classList.add("list-group-item", "list-group-item-action");
-                                option.innerText = item;
+                    debounceTimer = setTimeout(() => {
+                        fetch("/suggest?q=" + encodeURIComponent(query))
+                            .then(response => response.json())
+                            .then(data => {
+                                suggestionsBox.innerHTML = "";
+                                if (data.length === 0) return;
 
-                                option.onclick = function () {
-                                    searchBox.value = item;
-                                    suggestionsBox.innerHTML = "";
-                                };
+                                data.forEach(item => {
+                                    let option = document.createElement("a");
+                                    option.classList.add("list-group-item", "list-group-item-action", "bg-dark", "text-white", "border-secondary");
+                                    option.style.cursor = "pointer";
+                                    option.innerText = item;
 
-                                suggestionsBox.appendChild(option);
+                                    option.onclick = function () {
+                                        searchBox.value = item;
+                                        suggestionsBox.innerHTML = "";
+                                        document.getElementById("recommendForm").submit();
+                                    };
+
+                                    suggestionsBox.appendChild(option);
+                                });
                             });
-                        });
+                    }, 200);
                 } else {
                     suggestionsBox.innerHTML = "";
                 }
             });
 
+            document.addEventListener("click", function(e) {
+                if (e.target !== searchBox) {
+                    suggestionsBox.innerHTML = "";
+                }
+            });
         });
     </script>
 
 </body>
-
 </html>

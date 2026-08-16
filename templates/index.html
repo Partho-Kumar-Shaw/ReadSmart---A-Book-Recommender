@@ -3,375 +3,18 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>ReadSmart: Intelligent Book
-        Recommendation Website</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ReadSmart - Intelligent AI Book Recommender System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- External CSS -->
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
 
-    <style>
-        * {
-            font-family: 'Montserrat', sans-serif;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            margin: 0;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #000000, #111111, #ffffff);
-            background-attachment: fixed;
-            color: white;
-            overflow-x: hidden;
-            padding-top: 90px;
-            /* for fixed navbar */
-        }
-
-        /* Animated Background Glow */
-        body::before {
-            content: "";
-            position: fixed;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(255, 0, 0, 0.4), transparent 70%);
-            top: -200px;
-            left: -200px;
-            animation: moveGlow 8s infinite alternate ease-in-out;
-            z-index: -1;
-        }
-
-        @keyframes moveGlow {
-            from {
-                transform: translate(0, 0);
-            }
-
-            to {
-                transform: translate(300px, 200px);
-            }
-        }
-
-        /* NAVBAR */
-        .custom-navbar {
-            background: linear-gradient(90deg, rgba(0, 0, 0, 0.9), rgba(139, 0, 0, 0.8), rgba(255, 255, 255, 0.2));
-            backdrop-filter: blur(25px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.634);
-            padding: 12px 25px;
-            box-shadow: 2px 2px 8px white;
-
-        }
-
-        /* Smaller padding for phones */
-        @media (max-width: 576px) {
-            .custom-navbar {
-                padding: 10px 15px;
-            }
-        }
-
-        .navbar-brand {
-            font-weight: 800;
-            font-size: 22px;
-            color: #fff !important;
-            letter-spacing: 1px;
-        }
-
-        @media (max-width: 576px) {
-            .navbar-brand {
-                font-size: 20px;
-            }
-        }
-
-        .nav-link {
-            color: #ffffff !important;
-            font-weight: 600;
-            margin-left: 15px;
-            transition: 0.3s;
-        }
-
-        .nav-link:hover {
-            color: #ff3c3c !important;
-        }
-
-        /* Fix hamburger color */
-        .navbar-toggler {
-            border: none;
-        }
-
-        .navbar-toggler-icon {
-            filter: invert(1);
-        }
-
-        /* HEADING */
-        .main-heading {
-            font-size: 48px;
-            font-weight: 900;
-            text-align: center;
-            margin: 50px 0;
-            text-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
-        }
-
-        @media (max-width: 576px) {
-            .main-heading {
-                font-size: 32px;
-                margin: 30px 0;
-            }
-        }
-
-        /* CARDS */
-        .card {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(30px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 15px;
-            height: 100%;
-            transition: all 0.4s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-8px) scale(1.03);
-            box-shadow: 0 20px 40px rgba(255, 0, 0, 0.4);
-        }
-
-        .card img {
-            height: 220px;
-            object-fit: cover;
-            border-radius: 12px;
-            margin-bottom: 10px;
-        }
-
-        .card-title {
-            font-size: 16px;
-            font-weight: 700;
-        }
-
-        .card-text {
-            font-size: 13px;
-            color: #f1f1f1;
-        }
-
-        .book-col {
-            margin-bottom: 30px;
-        }
-
-        /* FOOTER */
-        footer {
-            margin-top: 80px;
-            background: linear-gradient(90deg, #000000, #8b0000, #ffffff);
-            padding: 50px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        footer::before {
-            content: "";
-            position: absolute;
-            width: 200%;
-            height: 100%;
-            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            animation: shine 6s infinite;
-        }
-
-        @keyframes shine {
-            from {
-                transform: translateX(-100%);
-            }
-
-            to {
-                transform: translateX(100%);
-            }
-        }
-
-        .footer-title {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-
-        .footer-text {
-            font-size: 14px;
-            opacity: 0.9;
-        }
-
-        .footer-bottom {
-            margin-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.3);
-            padding-top: 15px;
-            text-align: center;
-            font-size: 13px;
-        }
-
-        /* carousel effect*/
-
-
-
-
-        .carousel {
-
-            max-width: 60%;
-            overflow: hidden;
-            position: relative;
-            left: 20%;
-            border-radius: 16px;
-            box-shadow: 0 0px 30px rgba(221, 215, 215, 0.5);
-        }
-
-        @media(max-width:763px) {
-            .carousel {
-                max-width: 100%;
-                left: 0%;
-            }
-        }
-
-        .carousel-track {
-            display: flex;
-            transition: transform 0.7s ease-in-out;
-        }
-
-        .slide {
-            min-width: 100%;
-            position: relative;
-            transform: scale(0.9);
-            filter: blur(2px);
-            transition: all 0.6s ease;
-        }
-
-        .slide.active {
-            transform: scale(1);
-            filter: blur(0);
-        }
-
-        .slide img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .contain-img {
-            object-fit: contain !important;
-        }
-
-        .slide:hover img {
-            transform: scale(1.08);
-        }
-
-        .slide h2 {
-            position: absolute;
-            bottom: 20px;
-            left: 30px;
-            color: white;
-            font-size: 2rem;
-            text-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
-            background-color: rgba(128, 128, 128, 0.534);
-        }
-
-        /* Navigation */
-        .nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.15);
-            border: none;
-            color: white;
-            font-size: 2rem;
-            padding: 10px 15px;
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-            border-radius: 50%;
-            transition: all 0.3s ease;
-        }
-
-        .nav:hover {
-            background: rgba(255, 255, 255, 0.35);
-            transform: translateY(-50%) scale(1.2);
-        }
-
-        .prev {
-            left: 15px;
-        }
-
-        .next {
-            right: 15px;
-        }
-
-        /* Dots */
-        .dots {
-            position: absolute;
-            bottom: 15px;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .dots span {
-            width: 12px;
-            height: 12px;
-            background: rgba(255, 255, 255, 0.4);
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .dots span.active {
-            background: white;
-            transform: scale(1.4);
-        }
-
-        /* infinite .carousel animation  */
-        .carousel1 {
-            margin: 100px auto;
-            width: 95%;
-            /* border: 5px solid red ; */
-            display: flex;
-            overflow-x: auto;
-            transition: transform 0.6s ease-out;
-            /* 🔽 ADDED: smooth stop */
-            mask-image: linear-gradient(to right , transparent, #000 10% 90% , transparent);
-        }
-
-        .carousel1::-webkit-scrollbar {
-            display: none;
-        }
-
-        .group1 {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1em;
-            animation: spin 11s infinite linear;
-            padding-right: 1em;
-        }
-
-        .card1 {
-            flex: 0 0 5em;
-            height: 5em;
-            padding: 1em;
-            background: linear-gradient(135deg, #df5757, #111111, #ffffff);
-            font-size: 3rem;
-            border-radius: .2em;
-            text-align: center;
-            align-content: center;
-        }
-
-        .paused {
-            animation-play-state: paused !important;
-        }
-
-        @keyframes spin {
-            from {
-                translate: 0;
-            }
-
-            to {
-                translate: -100%;
-            }
-        }
-    </style>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
@@ -379,104 +22,182 @@
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg custom-navbar fixed-top">
         <div class="container-fluid">
+            <a class="navbar-brand" href="/">📚 ReadSmart</a>
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
                 aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand" href="/">📚 ReadSmart</a>
-
-
 
             <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
-                <ul class="navbar-nav text-center">
+                <ul class="navbar-nav text-center align-items-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Home</a>
+                        <a class="nav-link active" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/recommend">Recommend</a>
+                        <a class="nav-link" href="/topbooks">Top Books</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/recommend">Recommend AI</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/contact">Contact</a>
                     </li>
+                    <li class="nav-item ms-lg-2">
+                        <button class="btn btn-sm btn-outline-danger text-white rounded-pill px-3 py-2 fw-bold"
+                            onclick="openFavoritesModal()">
+                            ❤️ Reading List <span id="navFavCount" class="fav-badge">0</span>
+                        </button>
+                    </li>
                 </ul>
             </div>
-
         </div>
     </nav>
 
-    <!--Carousel Effect-->
+    <!-- HERO SECTION -->
+    <section class="hero-section container">
+        <h1 class="hero-title">Discover Your Next Favorite Book<br>With AI Intelligence</h1>
+        <p class="hero-subtitle">
+            Powered by collaborative filtering and real-time similarity metrics. Explore thousands of hand-picked
+            titles, viral BookTok hits, and timeless classics.
+        </p>
 
-    <div class="carousel">
-        <div class="carousel-track">
-
-            <div class="slide active">
-                <img src="{{ url_for('static', filename='images/book.png') }}" alt="ReadSmart carousel">
-                <h2>ReadSmart:A Smart Book Recommender System</h2>
-            </div>
-
-            <div class="slide">
-                <img src="https://images-cdn.reedsy.com/discovery/image/2249/image/large_d2a2bcb0125b0bb2b8413ce4cb76cfcfc7bca8d2.jpg"
-                    alt="">
-                <h2></h2>
-            </div>
-
-            <div class="slide">
-                <img class="contain-img" src="{{ url_for('static', filename='images/readsmart.png') }}" alt="ReadSmart"
-                    ]>
-                <h2></h2>
-            </div>
-
+        <!-- STATS BADGES -->
+        <div class="stats-badge-container">
+            <div class="stat-pill">📚 <span>50,000+</span> Books Indexed</div>
+            <div class="stat-pill">⚡ <span>10M+</span> Recommendations</div>
+            <div class="stat-pill">⭐ <span>4.9/5</span> Reader Satisfaction</div>
+            <div class="stat-pill">🔥 <span>2026</span> AI Engine Active</div>
         </div>
 
-        <button class="nav prev">❮</button>
-        <button class="nav next">❯</button>
+        <!-- HERO CAROUSEL -->
+        <div class="carousel-wrapper">
+            <div class="carousel-container">
+                <div class="carousel-track" id="heroTrack">
+                    <div class="slide-item">
+                        <img src="{{ url_for('static', filename='images/book.png') }}" alt="ReadSmart Featured">
+                        <div class="slide-overlay">
+                            <h3>📚 ReadSmart: Intelligent Book Recommender</h3>
+                            <p>Tailored recommendations based on reader preferences & rating metrics</p>
+                        </div>
+                    </div>
+                    <div class="slide-item">
+                        <img src="https://images-cdn.reedsy.com/discovery/image/2249/image/large_d2a2bcb0125b0bb2b8413ce4cb76cfcfc7bca8d2.jpg"
+                            alt="Viral Reads">
+                        <div class="slide-overlay">
+                            <h3>🔥 Crazy Trendings & Viral Hits</h3>
+                            <p>Explore what thousands of readers are obsessing over right now</p>
+                        </div>
+                    </div>
+                    <div class="slide-item">
+                        <img src="{{ url_for('static', filename='images/readsmart.png') }}" alt="AI Powered">
+                        <div class="slide-overlay">
+                            <h3>✨ Instant Matrix Factorization Matching</h3>
+                            <p>Search any title and unlock 6 closely related literary gems instantly</p>
+                        </div>
+                    </div>
+                </div>
 
-        <div class="dots"></div>
-    </div>
+                <button class="carousel-btn prev" id="heroPrevBtn">❮</button>
+                <button class="carousel-btn next" id="heroNextBtn">❯</button>
+                <div class="carousel-dots" id="heroDots"></div>
+            </div>
+        </div>
+    </section>
 
+    <!-- INFINITE MARQUEE TICKER (DETAILED CAROUSEL1) -->
+    <section class="ticker-wrapper">
+        <div class="ticker-heading">🔥 Live Trending Bestsellers Ticker (Hover to Pause)</div>
+        <div class="carousel1">
+            <div class="group1">
+                <!-- Populated dynamically by main.js -->
+            </div>
+            <div aria-hidden="true" class="group1">
+                <!-- Duplicate group for smooth infinite loop -->
+            </div>
+        </div>
+    </section>
 
+    <!-- CRAZY TRENDINGS & POPULAR BOOKS GRID -->
+    <div class="container my-5">
+        <div class="section-header">
+            <h2 class="section-title">🔥 Trending & Popular Selections</h2>
+            <p class="text-white-50">Filter by category or live search through top recommended titles</p>
+        </div>
 
-    <!-- CONTENT -->
-    <h1 class="main-heading">📈 Top Books</h1>
-    <div class="container border border-4 border-danger  shadow-lg rounded p-4 ">
+        <!-- CATEGORY TAB FILTERS -->
+        <div class="filter-tabs">
+            <button class="filter-tab active" data-category="all">✨ All Books</button>
+            <button class="filter-tab" data-category="viral">🔥 BookTok Viral</button>
+            <button class="filter-tab" data-category="top_rated">⭐ 4.5+ Rated</button>
+            <button class="filter-tab" data-category="classics">💎 Timeless Classics</button>
+        </div>
 
+        <!-- LIVE SEARCH INPUT -->
+        <div class="row justify-content-center mb-4">
+            <div class="col-md-6">
+                <input type="text" id="liveSearchInput"
+                    class="form-control form-control-lg text-white bg-dark border-secondary rounded-pill px-4"
+                    placeholder="🔍 Instant search by title or author name...">
+            </div>
+        </div>
 
-        <div class="row">
-            {% for i in range(book_name|length-46) %}
-            <div class="col-lg-3 col-md-4 col-sm-6 book-col">
-                <div class="card text-center">
-                    <img src="{{image[i]}}" class="img-fluid" alt="Book">
-                    <h5 class="card-title text-white ">{{book_name[i]}}</h5>
-                    <p class="card-text">✍️ {{author[i]}}</p>
-                    <p class="card-text">👍 Votes: {{votes[i]}}</p>
-                    <p class="card-text">⭐ Rating: {{rating[i]}}</p>
+        <!-- BOOKS GRID -->
+        <div class="row" id="booksGrid">
+            {% if enriched_books %}
+            {% for b in enriched_books[:16] %}
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4 book-col" data-tag="{{ b.tag }}">
+                <div class="book-card">
+                    <div class="card-img-wrapper">
+                        <img src="{{ b.image }}" alt="{{ b.title }}"
+                            onerror="this.src='https://via.placeholder.com/200x280?text=Book+Cover'">
+                        <span class="card-badge">{{ b.tag }}</span>
+                        <button class="card-bookmark-btn"
+                            onclick="toggleBookmark('{{ b.title|e }}', '{{ b.author|e }}', '{{ b.image|e }}')"
+                            title="Bookmark book">
+                            🤍
+                        </button>
+                    </div>
+                    <div class="card-content">
+                        <div class="book-title" title="{{ b.title }}">{{ b.title }}</div>
+                        <div class="book-author">✍️ {{ b.author }}</div>
+                        <div class="book-stats">
+                            <span class="rating-badge">⭐ {{ b.rating }}</span>
+                            <span class="votes-badge">🗳️ {{ b.votes }} votes</span>
+                        </div>
+                        <button class="quick-view-btn" onclick="openBookModal({{ b | tojson | safe }})">
+                            🔍 View Details & Recs
+                        </button>
+                    </div>
                 </div>
             </div>
             {% endfor %}
+            {% else %}
+            {% for i in range(book_name|length-34) %}
+            <div class="col-lg-3 col-md-4 col-sm-6 mb-4 book-col">
+                <div class="book-card">
+                    <div class="card-img-wrapper">
+                        <img src="{{ image[i] }}" alt="{{ book_name[i] }}">
+                        <span class="card-badge">⭐ Top Book</span>
+                    </div>
+                    <div class="card-content">
+                        <div class="book-title">{{ book_name[i] }}</div>
+                        <div class="book-author">✍️ {{ author[i] }}</div>
+                        <div class="book-stats">
+                            <span class="rating-badge">⭐ {{ rating[i] }}</span>
+                            <span class="votes-badge">🗳️ {{ votes[i] }} votes</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
         </div>
-        <div class="text-center my-4">
-            <a href="/topbooks" class="btn btn-danger btn-lg  px-5 rounded shadow-lg shadow-danger">
-                Top 50 Books ➡️
+
+        <div class="text-center my-5">
+            <a href="/topbooks" class="btn btn-danger btn-lg px-5 py-3 rounded-pill fw-bold shadow-lg">
+                Explore Full Top 50 Books Catalog ➡️
             </a>
-        </div>
-    </div>
-    <!-- Infinite carousel Animation  -->
-    <div class="carousel1">
-        <div class="group1">
-            <div class="card1">1</div>
-            <div class="card1">2</div>
-            <div class="card1">3</div>
-            <div class="card1">4</div>
-            <div class="card1">5</div>
-            <div class="card1">6</div>
-        </div>
-        <div aria-hidden class="group1">
-            <a href="https://google.com" class="card1">1</a>
-            <div class="card1">2</div>
-            <div class="card1">3</div>
-            <div class="card1">4</div>
-            <div class="card1">5</div>
-            <div class="card1">6</div>
         </div>
     </div>
 
@@ -484,96 +205,88 @@
     <footer>
         <div class="container">
             <div class="row text-white">
-                <div class="col-md-4">
-                    <div class="footer-title">About Project</div>
+                <div class="col-md-4 mb-4">
+                    <div class="footer-title">📚 About ReadSmart</div>
                     <div class="footer-text">
-                        📚 ReadSmart - Book Recommender System powered by Machine Learning to suggest books
-                        intelligently.
+                        ReadSmart is an intelligent book recommendation platform driven by machine learning algorithms,
+                        helping book lovers discover hidden literary gems and trending bestsellers effortlesly.
                     </div>
                 </div>
 
-                <div class="col-md-4">
-                    <div class="footer-title">Technologies Used</div>
+                <div class="col-md-4 mb-4">
+                    <div class="footer-title">⚡ Tech Stack</div>
                     <div class="footer-text">
-                        Python • Flask • Machine Learning
+                        Python 3 • Flask Framework • Scikit-Learn • Collaborative Filtering • Modern Glassmorphic CSS &
+                        Vanilla JS
                     </div>
                 </div>
 
-                <div class="col-md-4">
-                    <div class="footer-title">Connect</div>
+                <div class="col-md-4 mb-4">
+                    <div class="footer-title">🌐 Connect & Community</div>
                     <div class="footer-text">
-                        LinkedIn • GitHub • Twitter
+                        Connect with Team ReadSmart across platforms or send feedback directly through our contact
+                        portal.
                     </div>
                 </div>
             </div>
 
-            <div class="footer-bottom text-white">
-                © 2026 Book Recommender System | Designed with ❤️ by Team ReadSmart.
+            <div class="footer-bottom">
+                © 2026 ReadSmart Recommender Engine | Designed with ❤️ for book lovers worldwide by <a href="https://github.com/partho-kumar-shaw" style="color: white;">Partho Kumar Shaw</a>.
             </div>
         </div>
     </footer>
 
-    <!-- Bootstrap JS (IMPORTANT FOR MOBILE NAVBAR) -->
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
+    <!-- Custom Main JS -->
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+
+    <!-- Hero Carousel Slider Script -->
     <script>
-        const track = document.querySelector(".carousel-track");
-        const slides = Array.from(document.querySelectorAll(".slide"));
-        const prevBtn = document.querySelector(".prev");
-        const nextBtn = document.querySelector(".next");
-        const dotsContainer = document.querySelector(".dots");
+        (function () {
+            const track = document.getElementById("heroTrack");
+            if (!track) return;
+            const slides = Array.from(track.children);
+            const prevBtn = document.getElementById("heroPrevBtn");
+            const nextBtn = document.getElementById("heroNextBtn");
+            const dotsContainer = document.getElementById("heroDots");
 
-        let index = 0;
-        let autoPlay;
+            let currentIndex = 0;
+            let timer;
 
-        /* Create dots */
-        slides.forEach((_, i) => {
-            const dot = document.createElement("span");
-            dot.addEventListener("click", () => moveToSlide(i));
-            dotsContainer.appendChild(dot);
-        });
+            slides.forEach((_, i) => {
+                const dot = document.createElement("div");
+                dot.className = "carousel-dot" + (i === 0 ? " active" : "");
+                dot.addEventListener("click", () => goToSlide(i));
+                dotsContainer.appendChild(dot);
+            });
 
-        const dots = Array.from(dotsContainer.children);
+            const dots = Array.from(dotsContainer.children);
 
-        function updateCarousel() {
-            track.style.transform = `translateX(-${index * 100}%)`;
+            function goToSlide(i) {
+                currentIndex = (i + slides.length) % slides.length;
+                track.style.transform = `translateX(-${currentIndex * 100}%)`;
+                dots.forEach((d, idx) => d.classList.toggle("active", idx === currentIndex));
+            }
 
-            slides.forEach(slide => slide.classList.remove("active"));
-            dots.forEach(dot => dot.classList.remove("active"));
+            nextBtn.addEventListener("click", () => goToSlide(currentIndex + 1));
+            prevBtn.addEventListener("click", () => goToSlide(currentIndex - 1));
 
-            slides[index].classList.add("active");
-            dots[index].classList.add("active");
-        }
+            function startTimer() {
+                timer = setInterval(() => goToSlide(currentIndex + 1), 4000);
+            }
 
-        function moveToSlide(i) {
-            index = (i + slides.length) % slides.length;
-            updateCarousel();
-        }
+            function stopTimer() {
+                clearInterval(timer);
+            }
 
-        nextBtn.addEventListener("click", () => moveToSlide(index + 1));
-        prevBtn.addEventListener("click", () => moveToSlide(index - 1));
+            const wrapper = document.querySelector(".carousel-wrapper");
+            wrapper.addEventListener("mouseenter", stopTimer);
+            wrapper.addEventListener("mouseleave", startTimer);
 
-        /* Autoplay */
-        function startAutoPlay() {
-            autoPlay = setInterval(() => moveToSlide(index + 1), 3000);
-        }
-
-        function stopAutoPlay() {
-            clearInterval(autoPlay);
-        }
-
-        document.querySelector(".carousel").addEventListener("mouseenter", stopAutoPlay);
-        document.querySelector(".carousel").addEventListener("mouseleave", startAutoPlay);
-
-        updateCarousel();
-        startAutoPlay();
-
-
-        document.querySelector(".carousel1").addEventListener("click", () => {
-            document.querySelectorAll(".group1").forEach(el =>
-                el.classList.toggle("paused")
-            );
-        });
+            startTimer();
+        })();
     </script>
 
 </body>

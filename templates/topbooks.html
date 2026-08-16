@@ -3,203 +3,17 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>ReadSmart: Intelligent Book
-Recommendation Website</title>
+    <title>Top 50 Books - ReadSmart Bestsellers</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <style>
-        * {
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        body {
-            margin: 0;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #000000, #111111, #ffffff);
-            background-attachment: fixed;
-            color: white;
-            overflow-x: hidden;
-            padding-top: 90px;
-            /* for fixed navbar */
-        }
-
-        /* Animated Background Glow */
-        body::before {
-            content: "";
-            position: fixed;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(255, 0, 0, 0.4), transparent 70%);
-            top: -200px;
-            left: -200px;
-            animation: moveGlow 8s infinite alternate ease-in-out;
-            z-index: -1;
-        }
-
-        @keyframes moveGlow {
-            from {
-                transform: translate(0, 0);
-            }
-
-            to {
-                transform: translate(300px, 200px);
-            }
-        }
-
-        /* NAVBAR */
-        .custom-navbar {
-            background: linear-gradient(90deg, rgba(0, 0, 0, 0.9), rgba(139, 0, 0, 0.8), rgba(255, 255, 255, 0.2));
-            backdrop-filter: blur(25px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 12px 25px;
-        }
-
-        /* Smaller padding for phones */ 
-        @media (max-width: 576px) {
-            .custom-navbar {
-                padding: 10px 15px;
-            }
-        }
-
-        .navbar-brand {
-            font-weight: 800;
-            font-size: 22px;
-            color: #fff !important;
-            letter-spacing: 1px;
-        }
-
-        @media (max-width: 576px) {
-            .navbar-brand {
-                font-size: 20px;
-            }
-        }
-
-        .nav-link {
-            color: #ffffff !important;
-            font-weight: 600;
-            margin-left: 15px;
-            transition: 0.3s;
-        }
-
-        .nav-link:hover {
-            color: #ff3c3c !important;
-        }
-
-        /* Fix hamburger color */
-        .navbar-toggler {
-            border: none;
-        }
-
-        .navbar-toggler-icon {
-            filter: invert(1);
-        }
-
-        /* HEADING */
-        .main-heading {
-            font-size: 48px;
-            font-weight: 900;
-            text-align: center;
-            margin: 50px 0;
-            text-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
-        }
-
-        @media (max-width: 576px) {
-            .main-heading {
-                font-size: 32px;
-                margin: 30px 0;
-            }
-        }
-
-        /* CARDS */
-        .card {
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(30px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 15px;
-            height: 100%;
-            transition: all 0.4s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-8px) scale(1.03);
-            box-shadow: 0 20px 40px rgba(255, 0, 0, 0.4);
-        }
-
-        .card img {
-            height: 220px;
-            object-fit: cover;
-            border-radius: 12px;
-            margin-bottom: 10px;
-        }
-
-        .card-title {
-            font-size: 16px;
-            font-weight: 700;
-        }
-
-        .card-text {
-            font-size: 13px;
-            color: #f1f1f1;
-        }
-
-        .book-col {
-            margin-bottom: 30px;
-        }
-
-        /* FOOTER */
-        footer {
-            margin-top: 80px;
-            background: linear-gradient(90deg, #000000, #8b0000, #ffffff);
-            padding: 50px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        footer::before {
-            content: "";
-            position: absolute;
-            width: 200%;
-            height: 100%;
-            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            animation: shine 6s infinite;
-        }
-
-        @keyframes shine {
-            from {
-                transform: translateX(-100%);
-            }
-
-            to {
-                transform: translateX(100%);
-            }
-        }
-
-        .footer-title {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 15px;
-        }
-
-        .footer-text {
-            font-size: 14px;
-            opacity: 0.9;
-        }
-
-        .footer-bottom {
-            margin-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.3);
-            padding-top: 15px;
-            text-align: center;
-            font-size: 13px;
-        }
-    </style>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
@@ -207,86 +21,124 @@ Recommendation Website</title>
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg custom-navbar fixed-top">
         <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
-                aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
             <a class="navbar-brand" href="/">📚 ReadSmart</a>
 
-
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
             <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
-                <ul class="navbar-nav text-center">
+                <ul class="navbar-nav text-center align-items-center">
                     <li class="nav-item">
                         <a class="nav-link" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/recommend">Recommend</a>
+                        <a class="nav-link active" href="/topbooks">Top Books</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/recommend">Recommend AI</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/contact">Contact</a>
                     </li>
+                    <li class="nav-item ms-lg-2">
+                        <button class="btn btn-sm btn-outline-danger text-white rounded-pill px-3 py-2 fw-bold" onclick="openFavoritesModal()">
+                            ❤️ Reading List <span id="navFavCount" class="fav-badge">0</span>
+                        </button>
+                    </li>
                 </ul>
             </div>
-
         </div>
     </nav>
 
     <!-- CONTENT -->
-     <h1 class="main-heading">🔥 Top 50 Books</h1>
-    <div class="container">
-        
+    <div class="container my-5">
+        <div class="text-center mb-5">
+            <h1 class="hero-title" style="font-size: 42px;">🔥 Top 50 Bestselling Books</h1>
+            <p class="hero-subtitle">
+                Ranked by reader engagement, highest ratings, and total community votes across 50,000+ indexed titles.
+            </p>
+        </div>
 
-        <div class="row">
-            {% for i in range(book_name|length) %}
-            <div class="col-lg-3 col-md-4 col-sm-6 book-col">
-                <div class="card text-center">
-                    <img src="{{image[i]}}" class="img-fluid" alt="Book">
-                    <h5 class="card-title text-white ">{{book_name[i]}}</h5>
-                    <p class="card-text">✍️ {{author[i]}}</p>
-                    <p class="card-text">👍 Votes: {{votes[i]}}</p>
-                    <p class="card-text">⭐ Rating: {{rating[i]}}</p>
-                </div>
+        <!-- CATEGORY TAB FILTERS -->
+        <div class="filter-tabs">
+            <button class="filter-tab active" data-category="all">✨ All 50 Books</button>
+            <button class="filter-tab" data-category="viral">🔥 BookTok Viral</button>
+            <button class="filter-tab" data-category="top_rated">⭐ 4.5+ Rated</button>
+            <button class="filter-tab" data-category="classics">💎 Classics</button>
+        </div>
+
+        <!-- LIVE SEARCH INPUT -->
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-6">
+                <input type="text" id="liveSearchInput" class="form-control form-control-lg text-white bg-dark border-secondary rounded-pill px-4" placeholder="🔍 Filter Top 50 by title or author name...">
             </div>
-            {% endfor %}
+        </div>
+
+        <!-- TOP 50 BOOKS GRID -->
+        <div class="row" id="booksGrid">
+            {% if enriched_books %}
+                {% for b in enriched_books %}
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 book-col" data-tag="{{ b.tag }}">
+                    <div class="book-card">
+                        <div class="card-img-wrapper">
+                            <img src="{{ b.image }}" alt="{{ b.title }}" onerror="this.src='https://via.placeholder.com/200x280?text=Book+Cover'">
+                            <span class="card-badge">#{{ loop.index }} • {{ b.tag }}</span>
+                            <button class="card-bookmark-btn" onclick="toggleBookmark('{{ b.title|e }}', '{{ b.author|e }}', '{{ b.image|e }}')" title="Bookmark book">
+                                🤍
+                            </button>
+                        </div>
+                        <div class="card-content">
+                            <div class="book-title" title="{{ b.title }}">{{ b.title }}</div>
+                            <div class="book-author">✍️ {{ b.author }}</div>
+                            <div class="book-stats">
+                                <span class="rating-badge">⭐ {{ b.rating }}</span>
+                                <span class="votes-badge">🗳️ {{ b.votes }} votes</span>
+                            </div>
+                            <button class="quick-view-btn" onclick='openBookModal({{ b|tojson|safe }})'>
+                                🔍 View Details & Recs
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                {% for i in range(book_name|length) %}
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4 book-col">
+                    <div class="book-card">
+                        <div class="card-img-wrapper">
+                            <img src="{{ image[i] }}" alt="{{ book_name[i] }}">
+                            <span class="card-badge">#{{ i+1 }}</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="book-title">{{ book_name[i] }}</div>
+                            <div class="book-author">✍️ {{ author[i] }}</div>
+                            <div class="book-stats">
+                                <span class="rating-badge">⭐ {{ rating[i] }}</span>
+                                <span class="votes-badge">🗳️ {{ votes[i] }} votes</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
 
     <!-- FOOTER -->
     <footer>
-        <div class="container">
-            <div class="row text-white">
-                <div class="col-md-4">
-                    <div class="footer-title">About Project</div>
-                    <div class="footer-text">
-                        📚 ReadSmart - Book Recommender System powered by Machine Learning to suggest books intelligently.
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="footer-title">Technologies Used</div>
-                    <div class="footer-text">
-                        Python • Flask • Bootstrap 5 • Machine Learning
-                    </div>
-                </div>
-
-                <div class="col-md-4">
-                    <div class="footer-title">Connect</div>
-                    <div class="footer-text">
-                        LinkedIn • GitHub • Twitter
-                    </div>
-                </div>
-            </div>
-
-            <div class="footer-bottom text-white">
-                © 2026 Book Recommender System | Designed with ❤️ by Team ReadSmart.
+        <div class="container text-white">
+            <div class="footer-bottom">
+                © 2026 ReadSmart Recommender Engine | Designed with ❤️ by Team ReadSmart.
             </div>
         </div>
     </footer>
 
-    <!-- Bootstrap JS (IMPORTANT FOR MOBILE NAVBAR) -->
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-</body>
+    <!-- Custom Main JS -->
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
 
+</body>
 </html>

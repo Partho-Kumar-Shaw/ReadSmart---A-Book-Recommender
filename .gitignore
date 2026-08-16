@@ -1,2 +1,5 @@
 messages.txt 
 # or we can write *.txt if we dont want any text to be pushed.
+
+__pycache__/
+*.pyc

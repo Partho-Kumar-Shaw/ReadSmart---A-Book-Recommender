@@ -10,6 +10,7 @@ A machine learning-powered **Book Recommendation Web Application** built using *
 <b>This project uses pre-trained pickle files for the recommendation model.</b>
 <b>Clone the repository and run the application using the provided instructions.</b>
 
+---
 ## ✨ Features
 
 ### 📖 Popular Books Homepage

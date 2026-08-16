@@ -11,25 +11,52 @@ app = Flask(__name__)
 
 
 # ================== HOME PAGE ==================
+TAGS = ["🔥 BookTok Viral", "⭐ Top Rated", "⚡ Mind Brawler", "💎 Classic Gem", "🚀 Trending 2026"]
+
+def get_enriched_books():
+    books_list = []
+    for i in range(len(popular_df)):
+        title = str(popular_df['Book-Title'].values[i])
+        author = str(popular_df['Book-Author'].values[i])
+        img = str(popular_df['Image-URL-M'].values[i])
+        votes = int(popular_df['num_ratings'].values[i])
+        rating = float(round(popular_df['avg_rating'].values[i], 2))
+        tag = TAGS[i % len(TAGS)]
+        books_list.append({
+            'id': i,
+            'title': title,
+            'author': author,
+            'image': img,
+            'votes': votes,
+            'rating': rating,
+            'tag': tag
+        })
+    return books_list
+
 @app.route('/')
 def index():
+    books_data = get_enriched_books()
     return render_template(
         'index.html',
         book_name=list(popular_df['Book-Title'].values),
         author=list(popular_df['Book-Author'].values),
         image=list(popular_df['Image-URL-M'].values),
         votes=list(popular_df['num_ratings'].values),
-        rating=list(popular_df['avg_rating'].values)
+        rating=list(popular_df['avg_rating'].values),
+        enriched_books=books_data
     )
+
 @app.route('/topbooks')
 def topbooks():
+    books_data = get_enriched_books()
     return render_template(
         'topbooks.html',
         book_name=list(popular_df['Book-Title'].values),
         author=list(popular_df['Book-Author'].values),
         image=list(popular_df['Image-URL-M'].values),
         votes=list(popular_df['num_ratings'].values),
-        rating=list(popular_df['avg_rating'].values)
+        rating=list(popular_df['avg_rating'].values),
+        enriched_books=books_data
     )
 
 
@@ -45,10 +72,10 @@ def recommend():
     user_input = request.form.get('user_input')
 
     try:
-        if user_input not in pt.index:
+        if not user_input or user_input not in pt.index:
             return render_template('recommend.html',
                                    data=None,
-                                   error="❌ Book not found. Please try another name.")
+                                   error="❌ Book not found in dataset. Please try another book title.")
 
         index = np.where(pt.index == user_input)[0][0]
 
@@ -56,7 +83,7 @@ def recommend():
             list(enumerate(similarity_scores[index])),
             key=lambda x: x[1],
             reverse=True
-        )[1:6]
+        )[1:7]  # Fetch top 6 similar books
 
         data = []
         for i in similar_items:
@@ -67,26 +94,45 @@ def recommend():
             item.extend(list(temp_df.drop_duplicates('Book-Title')['Book-Author'].values))
             item.extend(list(temp_df.drop_duplicates('Book-Title')['Image-URL-M'].values))
 
-            data.append(item)
+            # Add fallback rating / votes or calculation if available
+            data.append({
+                'title': item[0] if len(item) > 0 else "Unknown",
+                'author': item[1] if len(item) > 1 else "Unknown",
+                'image': item[2] if len(item) > 2 else "",
+                'similarity': float(round(i[1] * 100, 1))
+            })
 
-        return render_template('recommend.html', data=data, error=None)
+        return render_template('recommend.html', data=data, user_input=user_input, error=None)
 
-    except Exception:
+    except Exception as e:
         return render_template('recommend.html',
                                data=None,
-                               error="⚠ Something went wrong. Please try again.")
+                               error="⚠ Something went wrong. Please try searching for another title.")
 
 
-# ================== REAL-TIME SUGGESTION API ==================
+# ================== REAL-TIME SUGGESTION & JSON API ==================
 @app.route('/suggest')
 def suggest():
     query = request.args.get('q')
 
     if query:
         suggestions = [title for title in pt.index if query.lower() in title.lower()]
-        return jsonify(suggestions[:5])  # limit to 5 suggestions
+        return jsonify(suggestions[:8])  # limit to 8 suggestions
 
     return jsonify([])
+
+
+@app.route('/api/books')
+def api_books():
+    return jsonify(get_enriched_books())
+
+
+@app.route('/api/random')
+def api_random():
+    books_data = get_enriched_books()
+    import random
+    selected = random.choice(books_data)
+    return jsonify(selected)
 
 
 # ================== CONTACT PAGE ==================
@@ -115,8 +161,8 @@ def send_message():
         f.write("-" * 50 + "\n")
 
     return render_template('contact.html',
-                           success="✅ Message sent successfully!")
+                           success="✅ Message sent successfully! Our team will get back to you soon.")
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True)

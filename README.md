@@ -99,11 +99,18 @@ python app.py
 
 ## 📸 Screenshots
 
-```markdown
+### 🏡 Home Page
 ![Homepage](screenshots/homepage.png)
+
+--- 
+### 👌Recommend Page
 ![Recommendations](screenshots/recommend.png)
+
+---
+
+### 📞 Contact Page
 ![Contact](screenshots/contact.png)
-```
+
 
 ---
 

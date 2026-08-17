@@ -6,6 +6,14 @@ A sleek **book discovery platform** using **Flask** and **Collaborative Filterin
 
 ---
 
+## 🚀 Live Demo
+
+**[🌍 Visit ReadSmart Live](https://readsmart-ai-omega.vercel.app/)**
+
+*Experience the app instantly without any setup required!*
+
+---
+
 ## ✨ Key Features
 
 | Feature | Description |
